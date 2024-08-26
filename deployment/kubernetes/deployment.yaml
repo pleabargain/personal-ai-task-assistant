@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-architect-agent
+  namespace: aws-architect
+  labels:
+    app: aws-architect-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aws-architect-agent
+  template:
+    metadata:
+      labels:
+        app: aws-architect-agent
+      annotations:
+        eks.amazonaws.com/role-arn: arn:aws:iam::269550163595:role/aws-architect-agent-role
+    spec:
+      serviceAccountName: aws-architect-agent-sa
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      containers:
+      - name: aws-architect-agent
+        image: 269550163595.dkr.ecr.ap-northeast-2.amazonaws.com/aws-architect-agent:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: AWS_REGION
+          value: "us-west-2"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aws-architect-agent-service
+  namespace: aws-architect
+spec:
+  selector:
+    app: aws-architect-agent
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
