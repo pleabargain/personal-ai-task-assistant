@@ -2,37 +2,63 @@ import streamlit as st
 import asyncio
 import json
 from task_manager import run_paa
+from llm import list_available_models
+from logging_config import setup_logging
 
+# Initialize logging and get log paths
+logger, log_paths = setup_logging()
+
+# Initialize available models
+available_models = []
+
+def initialize_models():
+    global available_models
+    try:
+        logger.info("Fetching available Ollama models")
+        available_models = list_available_models()
+        if not available_models:
+            error_msg = "No Ollama models found"
+            logger.error(error_msg)
+            st.error(f"{error_msg}. Please ensure Ollama is running and models are installed.")
+            st.info(f"Check error log for details: {log_paths['error_log']}")
+            return False
+        logger.info(f"Found {len(available_models)} available models: {available_models}")
+        return True
+    except Exception as e:
+        error_msg = f"Failed to connect to Ollama: {str(e)}"
+        logger.error(error_msg, exc_info=True)
+        st.error(error_msg)
+        st.info(f"Please ensure Ollama is running (ollama serve) and try again.")
+        st.info(f"Check error log for details: {log_paths['error_log']}")
+        return False
+
+# Set page config and title
 st.set_page_config(page_title="Personal AI Assistant", page_icon="🤖", layout="wide")
-
 st.title("Your Personal AI Assistant")
 
-bedrock_models = [
-    "anthropic.claude-3-5-sonnet-20240620-v1:0",
-    "anthropic.claude-3-sonnet-20240229-v1:0",
-    "anthropic.claude-3-haiku-20240307-v1:0",
-]
+# Initialize models
+initialize_models()
 
-if "selected_model" not in st.session_state:
-    st.session_state.selected_model = bedrock_models[0]
-
-if "user_input" not in st.session_state:
+# Initialize Streamlit session state
+if 'initialized' not in st.session_state:
+    st.session_state.initialized = False
+if 'user_input' not in st.session_state:
     st.session_state.user_input = ""
-
-if "task_status" not in st.session_state:
+if 'task_status' not in st.session_state:
     st.session_state.task_status = {}
-
-if "progress" not in st.session_state:
+if 'progress' not in st.session_state:
     st.session_state.progress = 0
+if 'selected_model' not in st.session_state:
+    st.session_state.selected_model = available_models[0] if available_models else None
 
 st.sidebar.title("Settings")
 st.session_state.selected_model = st.sidebar.selectbox(
-    "Select Bedrock Model", bedrock_models
+    "Select Ollama Model", available_models
 )
 
 st.write(f"Selected Model: {st.session_state.selected_model}")
 
-# Sample tasks (기존과 동일하게 유지)
+# Sample tasks
 sample_tasks = {
     "Schedule Meeting": "Schedule a meeting with Eric for next Tuesday at 2 PM.",
     "Draft Email": "Draft a polite email to decline a vendor's proposal.",
@@ -55,8 +81,92 @@ user_input = st.text_area(
     key="user_input",
 )
 
+async def process_request(
+    user_input: str,
+    progress_bar,
+    status_placeholder,
+    input_expander,
+    planner_expander,
+    task_expander,
+    update_expander,
+    replan_expander
+):
+    """Process a user request and update the UI with progress."""
+    try:
+        logger.info("Starting PAA execution")
+        async for status in run_paa(user_input, st.session_state.selected_model):
+            logger.debug(f"Received status update: {status}")
+            if "error" in status:
+                error_msg = status['error']
+                logger.error(f"PAA execution error: {error_msg}")
+                st.error(f"An error occurred: {error_msg}")
+                st.info(f"Check error log for details: {log_paths['error_log']}")
+                if "traceback" in status:
+                    logger.error(f"Error traceback: {status['traceback']}")
+                    st.code(status["traceback"], language="python")
+                    st.info(f"Full error details have been logged to: {log_paths['error_log']}")
+                break
+
+            current_node = status.get("current_node")
+
+            if current_node == "end":
+                # Final response handling
+                logger.info("Task execution completed successfully")
+                st.success("Task Completed")
+                final_response = status.get("response", "Task completed")
+                logger.debug(f"Final response: {final_response}")
+                st.write("Final Response:", final_response)
+                progress_bar.progress(100)
+                status_placeholder.write("Task Completed")
+
+                # Final status display
+                final_status_expander = st.expander(
+                    "Final Status", expanded=True
+                )
+                final_status_expander.json(status)
+                break
+
+            if current_node:
+                if current_node not in st.session_state.task_status:
+                    st.session_state.task_status[current_node] = {
+                        "status": "In Progress",
+                        "details": "",
+                    }
+
+                if current_node == "planner":
+                    planner_expander.json(status)
+                    if "plan" in status:
+                        task_checklist = task_expander.empty()
+                        task_checklist.write("#### Task Checklist")
+                        for i, task in enumerate(status["plan"]):
+                            task_checklist.checkbox(task, key=f"task_{i}")
+                    st.session_state.progress = 25
+                elif current_node == "task_executor":
+                    task_expander.json(status)
+                    st.session_state.progress = 50
+                elif current_node == "project_updater":
+                    update_expander.json(status)
+                    st.session_state.progress = 75
+                elif current_node == "replanner":
+                    replan_expander.json(status)
+                    st.session_state.progress = 90
+
+                st.session_state.task_status[current_node]["status"] = "Completed"
+                progress_bar.progress(st.session_state.progress)
+                status_placeholder.write(f"Current step: {current_node}")
+
+    except Exception as e:
+        error_msg = "Unexpected error during request processing"
+        logger.error(error_msg, exc_info=True)
+        st.error(f"An error occurred: {str(e)}")
+        st.info(f"Check error log for details: {log_paths['error_log']}")
+        st.exception(e)
+
+# Handle assistance button click
 if st.button("Get Assistance"):
     if user_input:
+        logger.info(f"Processing new request with model: {st.session_state.selected_model}")
+        logger.debug(f"User input: {user_input}")
         st.session_state.task_status = {}
         st.session_state.progress = 0
 
@@ -72,73 +182,19 @@ if st.button("Get Assistance"):
         progress_bar = st.progress(0)
         status_placeholder = st.empty()
 
-        async def process_request():
-            try:
-                async for status in run_paa(
-                    user_input, st.session_state.selected_model
-                ):
-                    if "error" in status:
-                        st.error(f"An error occurred: {status['error']}")
-                        if "traceback" in status:
-                            st.code(status["traceback"], language="python")
-                        break
-
-                    current_node = status.get("current_node")
-
-                    if current_node == "end":
-                        # 최종 응답 처리
-                        st.success("Task Completed")
-                        st.write(
-                            "Final Response:", status.get("response", "Task completed")
-                        )
-                        progress_bar.progress(100)
-                        status_placeholder.write("Task Completed")
-
-                        # 최종 상태 표시
-                        final_status_expander = st.expander(
-                            "Final Status", expanded=True
-                        )
-                        final_status_expander.json(status)
-                        break
-
-                    if current_node:
-                        if current_node not in st.session_state.task_status:
-                            st.session_state.task_status[current_node] = {
-                                "status": "In Progress",
-                                "details": "",
-                            }
-
-                        if current_node == "planner":
-                            planner_expander.json(status)
-                            if "plan" in status:
-                                task_checklist = task_expander.empty()
-                                task_checklist.write("#### Task Checklist")
-                                for i, task in enumerate(status["plan"]):
-                                    task_checklist.checkbox(task, key=f"task_{i}")
-                            st.session_state.progress = 25
-                        elif current_node == "task_executor":
-                            task_expander.json(status)
-                            st.session_state.progress = 50
-                        elif current_node == "project_updater":
-                            update_expander.json(status)
-                            st.session_state.progress = 75
-                        elif current_node == "replanner":
-                            replan_expander.json(status)
-                            st.session_state.progress = 90
-
-                        st.session_state.task_status[current_node][
-                            "status"
-                        ] = "Completed"
-                        progress_bar.progress(st.session_state.progress)
-                        status_placeholder.write(f"Current step: {current_node}")
-
-            except Exception as e:
-                st.error(f"An error occurred: {str(e)}")
-                st.exception(e)
-
         # Run the async function
-        asyncio.run(process_request())
+        asyncio.run(process_request(
+            user_input,
+            progress_bar,
+            status_placeholder,
+            input_expander,
+            planner_expander,
+            task_expander,
+            update_expander,
+            replan_expander
+        ))
     else:
+        logger.warning("Attempted to submit empty task")
         st.warning("Please enter a task or question.")
 
 st.sidebar.markdown("---")

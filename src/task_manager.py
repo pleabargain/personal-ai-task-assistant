@@ -1,38 +1,31 @@
 import logging
 import json
 import re
-import boto3
-import inspect
-from typing import Union, Dict, List, Tuple, AsyncGenerator, Optional
+from typing import Union, Dict, List, AsyncGenerator, Optional
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.schema import AgentAction, AgentFinish
-from langchain.agents import AgentExecutor
-from langchain_aws.chat_models.bedrock import ChatBedrock
 from langchain.pydantic_v1 import BaseModel, Field
-from typing import List, Optional
 from enum import Enum
 from llm import create_llm
 from tools import TOOLS
 from state import State
 
 logger = logging.getLogger(__name__)
-bedrock_runtime = boto3.client("bedrock-runtime", region_name="us-west-2")
 
-
-def create_agent(llm) -> AgentExecutor:
-    """Sets up the AgentExecutor using the provided language model and tools."""
+def create_agent(llm):
+    """Sets up the agent using the provided language model and tools."""
     prompt = ChatPromptTemplate.from_messages(
         [
-            (
-                "system",
-                "You are a helpful AI assistant. Use the available tools to complete tasks.",
-            ),
-            ("human", "{input}"),
+            SystemMessage(content="You are a helpful AI assistant. Use the available tools to complete tasks."),
+            HumanMessage(content="{input}")
         ]
     )
-    return AgentExecutor(agent=llm, tools=TOOLS, prompt=prompt, verbose=True)
-
+    return {
+        "llm": llm,
+        "tools": TOOLS,
+        "prompt": prompt
+    }
 
 def extract_core_tasks(plan: List[str]) -> List[str]:
     """Extracts the core tasks from a detailed plan."""
@@ -41,7 +34,6 @@ def extract_core_tasks(plan: List[str]) -> List[str]:
     logger.debug(f"Extracted core tasks: {core_tasks}")
     return core_tasks
 
-
 def get_last_human_message(messages: List[BaseMessage]) -> Optional[HumanMessage]:
     """Retrieves the last human message from the conversation history."""
     for message in reversed(messages):
@@ -49,12 +41,9 @@ def get_last_human_message(messages: List[BaseMessage]) -> Optional[HumanMessage
             return message
     return None
 
-
 def parse_llm_result(result):
     """Parses the result from the LLM."""
-    if isinstance(result, BaseMessage):
-        content = result.content
-    elif isinstance(result, dict) and "content" in result:
+    if isinstance(result, dict) and "content" in result:
         content = result["content"]
     else:
         raise ValueError("Unexpected response format from LLM.")
@@ -73,13 +62,11 @@ def parse_llm_result(result):
         "plan": content.split("\n"),  # Split content into lines as a fallback plan
     }
 
-
 def create_new_state(state: State, **kwargs) -> State:
     """Creates a new state with updated values."""
     new_state = state.copy()
     new_state.update(kwargs)
     return new_state
-
 
 def planner(state: State) -> State:
     """Planner function to generate a step-by-step plan."""
@@ -92,11 +79,8 @@ def planner(state: State) -> State:
 
     prompt = ChatPromptTemplate.from_messages(
         [
-            SystemMessage(
-                content="You are a planning expert. Create a concise step-by-step minimum required plan with no more than 10 steps."
-            ),
-            HumanMessage(
-                content=f"""
+            SystemMessage(content="You are a planning expert. Create a concise step-by-step minimum required plan with no more than 10 steps."),
+            HumanMessage(content=f"""
         Task: {last_human_message.content}
         
         Please provide a response in the following format:
@@ -112,14 +96,13 @@ def planner(state: State) -> State:
             ]
         }}
         Ensure the plan has no more than 10 steps.
-        """
-            ),
+        """)
         ]
     )
 
     try:
-        result = llm.invoke(prompt.format_messages())
-        logger.debug(f"Raw LLM output: {result.content}")
+        result = llm(prompt.format_messages())
+        logger.debug(f"Raw LLM output: {result}")
         parsed_result = parse_llm_result(result)
         core_tasks = parsed_result["plan"]
 
@@ -135,7 +118,6 @@ def planner(state: State) -> State:
         logger.error(f"Error in planner: {str(e)}", exc_info=True)
         raise
 
-
 def task_executor(state: State) -> Union[Dict, AgentFinish]:
     logger.info("Executing Task Executor")
 
@@ -143,19 +125,13 @@ def task_executor(state: State) -> Union[Dict, AgentFinish]:
         logger.error("Missing context or model_id in state")
         return handle_error(state, "Missing context or model_id")
 
-    llm = ChatBedrock(model_id=state["context"]["model_id"], client=bedrock_runtime)
-    llm_with_tools = llm.bind_tools(TOOLS)
+    llm = create_llm(state["context"]["model_id"])
+    agent = create_agent(llm)
 
     prompt = ChatPromptTemplate.from_messages(
         [
-            (
-                "system",
-                "You are a helpful AI assistant. Use the available tools to complete tasks.",
-            ),
-            (
-                "human",
-                "Task: {task}\nGoal: {goal}\n\nPlease complete this task using the available tools if necessary.",
-            ),
+            SystemMessage(content="You are a helpful AI assistant. Use the available tools to complete tasks."),
+            HumanMessage(content="Task: {task}\nGoal: {goal}\n\nPlease complete this task using the available tools if necessary.")
         ]
     )
 
@@ -163,27 +139,33 @@ def task_executor(state: State) -> Union[Dict, AgentFinish]:
 
     try:
         messages = prompt.format_messages(
-            task=state["current_task"], goal=state["goals"]
+            task=state.get("current_task", "unknown"),
+            goal=state.get("goals", "unknown")
         )
-        result = llm_with_tools.invoke(messages)
+        result = llm(messages)
 
-        tool_calls = result.tool_calls
+        response = result.get("content", "")
 
-        response = ""
-        for tool_call in tool_calls:
-            tool_name = tool_call["name"]
+        # Extract tool calls from response if any
+        tool_pattern = r"Tool: (\w+)\nArgs: (.+)"
+        tool_matches = re.finditer(tool_pattern, response)
+        
+        tool_outputs = []
+        for match in tool_matches:
+            tool_name = match.group(1)
             try:
-                tool_args = tool_call["args"]
-                tool_output = tools_by_name[tool_name].invoke(tool_args)
-
-                response += f"Tool used: {tool_name}\nArgs: {tool_args}\nOutput: {tool_output}\n\n"
+                tool_args = json.loads(match.group(2))
+                if tool_name in tools_by_name:
+                    tool_output = tools_by_name[tool_name].invoke(tool_args)
+                    tool_outputs.append(f"Tool {tool_name} output: {tool_output}")
             except Exception as tool_error:
                 logger.error(f"Error using tool {tool_name}: {str(tool_error)}")
-                response += f"Error using tool {tool_name}: {str(tool_error)}\n\n"
+                tool_outputs.append(f"Error using tool {tool_name}: {str(tool_error)}")
 
-        response += f"Final response: {result.content}"
+        if tool_outputs:
+            response += "\n\n" + "\n".join(tool_outputs)
 
-        next_task_index = state["plan"].index(state["current_task"]) + 1
+        next_task_index = state["plan"].index(state.get("current_task", "")) + 1
         next_task = (
             state["plan"][next_task_index]
             if next_task_index < len(state["plan"])
@@ -191,38 +173,40 @@ def task_executor(state: State) -> Union[Dict, AgentFinish]:
         )
 
         return {
-            "past_actions": state["past_actions"] + [(state["current_task"], response)],
+            "past_actions": state.get("past_actions", []) + [(state.get("current_task", "unknown"), response)],
             "current_node": "task_executor",
             "response": response,
             "next_task": next_task,
-            "plan": state["plan"],
-            "goals": state["goals"],
-            "context": state["context"],
+            "plan": state.get("plan", []),
+            "goals": state.get("goals", ""),
+            "context": state.get("context", {}),
+            "current_task": state.get("current_task", "unknown")
         }
     except Exception as e:
         logger.error(f"Error in task_executor: {str(e)}", exc_info=True)
         return handle_error(state, str(e))
 
-
 def handle_error(state: State, error_message: str) -> Dict:
+    """Handle errors by creating a state update with error information."""
     return {
-        "past_actions": state["past_actions"]
-        + [(state["current_task"], f"Error occurred: {error_message}")],
+        "past_actions": state.get("past_actions", [])
+        + [(state.get("current_task", "unknown"), f"Error occurred: {error_message}")],
         "current_node": "task_executor",
         "response": f"Error occurred while executing the task: {error_message}",
+        "error": error_message,
         "next_task": None,
         "plan": state.get("plan", []),
         "goals": state.get("goals", ""),
         "context": state.get("context", {}),
+        "current_task": state.get("current_task", "unknown")
     }
-
 
 def project_updater(state: State) -> State:
     """Updates the project status."""
     logger.info("Executing Project Updater")
     last_action = (
-        state["past_actions"][-1]
-        if state["past_actions"]
+        state.get("past_actions", [])[-1]
+        if state.get("past_actions", [])
         else ("No action", "No details")
     )
 
@@ -232,12 +216,10 @@ def project_updater(state: State) -> State:
 
     return create_new_state(state, response=summary, current_node="project_updater")
 
-
 class Decision(str, Enum):
     COMPLETE = "complete"
     REPLAN = "replan"
     CONTINUE = "continue"
-
 
 class ReplannerOutput(BaseModel):
     decision: Decision
@@ -246,50 +228,45 @@ class ReplannerOutput(BaseModel):
         None, description="New step-by-step plan if decision is 'replan'"
     )
 
-
 def replanner(state: State) -> Union[Dict, AgentFinish]:
     logger.info("Executing Replanner")
     llm = create_llm(state["context"]["model_id"])
 
-    structured_llm = llm.with_structured_output(ReplannerOutput)
-
     prompt = ChatPromptTemplate.from_messages(
         [
-            (
-                "system",
-                "You are a replanning expert. Evaluate the current progress and decide if the plan needs to be updated or if the task is complete.",
-            ),
-            (
-                "human",
-                "Original goal: {goals}\n"
+            SystemMessage(content="You are a replanning expert. Evaluate the current progress and decide if the plan needs to be updated or if the task is complete."),
+            HumanMessage(content="Original goal: {goals}\n"
                 "Current plan:\n{plan}\n"
                 "Completed actions:\n{past_actions}\n"
                 "Last update:\n{response}\n\n"
                 "Please provide your decision on whether the plan should be continued, updated, or marked as complete. "
-                "If you decide to replan, provide a new step-by-step plan.",
-            ),
+                "If you decide to replan, provide a new step-by-step plan.")
         ]
     )
 
     try:
         messages = prompt.format_messages(
-            goals=state["goals"],
-            plan=state["plan"],
-            past_actions=state["past_actions"],
-            response=state["response"],
+            goals=state.get("goals", ""),
+            plan=state.get("plan", []),
+            past_actions=state.get("past_actions", []),
+            response=state.get("response", "")
         )
 
-        result = structured_llm.invoke(messages)
+        result = llm(messages)
+        content = result.get("content", "")
 
-        if result.decision == Decision.COMPLETE:
+        # Parse decision from content
+        if "COMPLETE" in content.upper():
             return AgentFinish(
-                return_values={"output": result.reasoning},
+                return_values={"output": content},
                 log="Task completed",
             )
-        elif result.decision == Decision.REPLAN:
+        elif "REPLAN" in content.upper():
+            # Extract new plan from content
+            plan_lines = [line.strip() for line in content.split("\n") if line.strip().startswith("-")]
             return {
-                "plan": result.new_plan,
-                "current_task": result.new_plan[0] if result.new_plan else "",
+                "plan": plan_lines,
+                "current_task": plan_lines[0] if plan_lines else "",
                 "current_node": "replanner",
             }
         else:  # continue
@@ -300,14 +277,13 @@ def replanner(state: State) -> Union[Dict, AgentFinish]:
         logger.error(f"Error in replanner: {str(e)}", exc_info=True)
         return handle_error(state, str(e))
 
-
 async def run_paa(question: str, model_id: str) -> AsyncGenerator[Dict, None]:
     logger.info(f"Running Personal AI Assistant with question: {question}")
 
     initial_state: State = {
         "messages": [
             SystemMessage(content="You are a helpful personal AI assistant."),
-            HumanMessage(content=question),
+            HumanMessage(content=question)
         ],
         "plan": [],
         "goals": "",
@@ -325,14 +301,14 @@ async def run_paa(question: str, model_id: str) -> AsyncGenerator[Dict, None]:
 
             if current_state["current_node"] == "planner":
                 current_state = planner(current_state)
-                if current_state["plan"]:
+                if current_state.get("plan", []):
                     current_state["current_task"] = current_state["plan"][0]
                     current_state["current_node"] = "task_executor"
                 else:
                     current_state["current_node"] = "end"
             elif current_state["current_node"] == "task_executor":
                 current_state = task_executor(current_state)
-                if current_state["next_task"]:
+                if current_state.get("next_task"):
                     current_state["current_task"] = current_state["next_task"]
                     current_state["current_node"] = "task_executor"
                 else:
@@ -357,7 +333,7 @@ async def run_paa(question: str, model_id: str) -> AsyncGenerator[Dict, None]:
                 else:
                     current_state.update(result)
             yield {
-                "current_node": current_state["current_node"],
+                "current_node": current_state.get("current_node", "unknown"),
                 "response": current_state.get("response", ""),
                 "plan": current_state.get("plan", []),
                 "goals": current_state.get("goals", ""),
