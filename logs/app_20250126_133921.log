@@ -1,0 +1,111 @@
+2025-01-26 13:39:21,170 - root - INFO - logging_config.py:56 - Logging system initialized
+2025-01-26 13:39:22,281 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 13:39:22,282 - httpcore.connection - DEBUG - _trace.py:47 - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-01-26 13:39:22,284 - httpcore.connection - DEBUG - _trace.py:47 - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012FCE5A8D70>
+2025-01-26 13:39:22,284 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:39:22,284 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:39:22,284 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:39:22,284 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:39:22,284 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:39:22,291 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:39:22 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:39:22,294 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:39:22,294 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:39:22,295 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:39:22,295 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:39:22,295 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:39:22,296 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 13:39:22,353 - root - INFO - conftest.py:39 - Test logging initialized
+2025-01-26 13:39:22,364 - tests.test_app - INFO - test_app.py:53 - Testing page initialization
+2025-01-26 13:39:22,366 - tests.test_app - ERROR - test_app.py:65 - Error in page initialization test: assert False
+ +  where False = <MagicMock name='set_page_config' id='1304837265776'>.called
+2025-01-26 13:39:22,384 - tests.test_app - INFO - test_app.py:70 - Testing model selection
+2025-01-26 13:39:22,386 - tests.test_app - ERROR - test_app.py:78 - Error in model selection test: assert False
+ +  where False = <MagicMock name='selectbox' id='1304836740048'>.called
+2025-01-26 13:39:22,402 - tests.test_app - INFO - test_app.py:83 - Testing sample tasks
+2025-01-26 13:39:22,404 - tests.test_app - ERROR - test_app.py:92 - Error in sample tasks test: st.session_state has no attribute "user_input". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2025-01-26 13:39:22,484 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:39:22,485 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:39:22,487 - tests.test_app - INFO - test_app.py:98 - Testing process request
+2025-01-26 13:39:22,489 - tests.test_app - ERROR - test_app.py:119 - Error in process request test: name 'process_request' is not defined
+2025-01-26 13:39:22,499 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:39:22,507 - tests.test_app - INFO - test_app.py:124 - Testing error handling
+2025-01-26 13:39:22,509 - tests.test_app - ERROR - test_app.py:138 - Error in error handling test: assert False
+ +  where False = <MagicMock name='error' id='1304835716112'>.called
+2025-01-26 13:39:22,521 - tests.test_app - INFO - test_app.py:143 - Testing session state management
+2025-01-26 13:39:22,523 - tests.test_app - DEBUG - test_app.py:155 - Session state management verified
+2025-01-26 13:39:22,529 - tests.test_app - INFO - test_app.py:162 - Testing UI components visibility
+2025-01-26 13:39:22,531 - tests.test_app - ERROR - test_app.py:172 - Error in UI components visibility test: assert False
+ +  where False = <MagicMock name='title' id='1304836762192'>.called
+2025-01-26 13:39:22,550 - tests.test_app - INFO - test_app.py:177 - Testing progress tracking
+2025-01-26 13:39:22,552 - tests.test_app - DEBUG - test_app.py:190 - Progress tracking verified
+2025-01-26 13:39:22,572 - tests.test_llm - INFO - test_llm.py:19 - Testing create_llm with successful response
+2025-01-26 13:39:22,574 - tests.test_llm - DEBUG - test_llm.py:29 - LLM response: {'content': 'This is a test response', 'role': 'assistant'}
+2025-01-26 13:39:22,577 - tests.test_llm - INFO - test_llm.py:36 - Testing create_llm error handling
+2025-01-26 13:39:22,579 - tests.test_llm - DEBUG - test_llm.py:45 - Expected error raised: Error communicating with Ollama: Test error
+2025-01-26 13:39:22,583 - tests.test_llm - INFO - test_llm.py:50 - Testing list_available_models with successful response
+2025-01-26 13:39:22,586 - tests.test_llm - DEBUG - test_llm.py:59 - Retrieved models: ['model1', 'model2', 'model3']
+2025-01-26 13:39:22,589 - tests.test_llm - INFO - test_llm.py:66 - Testing list_available_models error handling
+2025-01-26 13:39:22,591 - llm - ERROR - llm.py:54 - Failed to list Ollama models: Test error
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 51, in list_available_models
+    models = ollama.list()
+             ^^^^^^^^^^^^^
+  File "C:\Python312\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+Exception: Test error
+2025-01-26 13:39:22,593 - tests.test_llm - DEBUG - test_llm.py:72 - Expected error raised: Error listing Ollama models: Test error
+2025-01-26 13:39:22,596 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:39:22,598 - tests.test_llm - INFO - test_llm.py:78 - Testing LLM async compatibility
+2025-01-26 13:39:22,599 - tests.test_llm - DEBUG - test_llm.py:89 - Async LLM response: {'content': 'async test', 'role': 'assistant'}
+2025-01-26 13:39:22,600 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:39:22,604 - tests.test_llm - INFO - test_llm.py:96 - Testing LLM with streaming option
+2025-01-26 13:39:22,606 - tests.test_llm - DEBUG - test_llm.py:111 - Streaming LLM response: {'content': 'part1part2', 'role': 'assistant'}
+2025-01-26 13:39:22,609 - tests.test_task_manager - INFO - test_task_manager.py:56 - Testing create_agent
+2025-01-26 13:39:22,611 - tests.test_task_manager - DEBUG - test_task_manager.py:64 - Agent created successfully
+2025-01-26 13:39:22,613 - tests.test_task_manager - INFO - test_task_manager.py:71 - Testing extract_core_tasks
+2025-01-26 13:39:22,614 - task_manager - DEBUG - task_manager.py:35 - Extracting core tasks from plan: ['Step 1', 'Step 2', 'Step 3']
+2025-01-26 13:39:22,614 - task_manager - DEBUG - task_manager.py:37 - Extracted core tasks: ['ep 1', 'ep 2', 'ep 3']
+2025-01-26 13:39:22,614 - tests.test_task_manager - DEBUG - test_task_manager.py:77 - Extracted tasks: ['ep 1', 'ep 2', 'ep 3']
+2025-01-26 13:39:22,620 - tests.test_task_manager - INFO - test_task_manager.py:84 - Testing get_last_human_message
+2025-01-26 13:39:22,621 - tests.test_task_manager - DEBUG - test_task_manager.py:89 - Retrieved message: Test task
+2025-01-26 13:39:22,624 - tests.test_task_manager - INFO - test_task_manager.py:96 - Testing parse_llm_result
+2025-01-26 13:39:22,626 - tests.test_task_manager - DEBUG - test_task_manager.py:102 - Parsed result: {'goals': 'Complete test task', 'plan': ['Step 1: First action', 'Step 2: Second action', 'Step 3: Final action']}
+2025-01-26 13:39:22,628 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:39:22,630 - tests.test_task_manager - INFO - test_task_manager.py:110 - Testing planner
+2025-01-26 13:39:22,632 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:39:22,633 - tests.test_task_manager - ERROR - test_task_manager.py:120 - Error in planner test: Unsupported message type: <class 'dict'>
+2025-01-26 13:39:22,710 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:39:22,713 - tests.test_task_manager - INFO - test_task_manager.py:125 - Testing task_executor
+2025-01-26 13:39:22,714 - task_manager - INFO - task_manager.py:131 - Executing Task Executor
+2025-01-26 13:39:22,715 - tests.test_task_manager - ERROR - test_task_manager.py:136 - Error in task_executor test: Unsupported message type: <class 'dict'>
+2025-01-26 13:39:22,781 - tests.test_task_manager - INFO - test_task_manager.py:141 - Testing project_updater
+2025-01-26 13:39:22,782 - task_manager - INFO - task_manager.py:221 - Executing Project Updater
+2025-01-26 13:39:22,782 - tests.test_task_manager - DEBUG - test_task_manager.py:146 - Project updater result: {'messages': [SystemMessage(content='You are a helpful AI assistant.'), HumanMessage(content='Test task')], 'plan': ['Step 1', 'Step 2', 'Step 3'], 'goals': 'Test goal', 'past_actions': [], 'current_task': 'Step 1', 'response': 'Completed task: No action. Action taken: No details\n\nChecklist:\n- Step 1\n- Step 2\n- Step 3', 'context': {'model_id': 'test-model'}, 'current_node': 'project_updater'}
+2025-01-26 13:39:22,785 - tests.test_task_manager - INFO - test_task_manager.py:153 - Testing replanner
+2025-01-26 13:39:22,787 - task_manager - INFO - task_manager.py:247 - Executing Replanner
+2025-01-26 13:39:22,787 - tests.test_task_manager - ERROR - test_task_manager.py:163 - Error in replanner test: Unsupported message type: <class 'dict'>
+2025-01-26 13:39:22,863 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:39:22,865 - tests.test_task_manager - INFO - test_task_manager.py:169 - Testing run_paa
+2025-01-26 13:39:22,867 - task_manager - INFO - task_manager.py:302 - Running Personal AI Assistant with question: Test task
+2025-01-26 13:39:22,867 - task_manager - INFO - task_manager.py:327 - Current node: planner
+2025-01-26 13:39:22,868 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:39:22,869 - task_manager - ERROR - task_manager.py:375 - Error occurred in run_paa: No human message found in the conversation history
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 330, in run_paa
+    current_state = planner(current_state)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 81, in planner
+    raise ValueError("No human message found in the conversation history")
+ValueError: No human message found in the conversation history
+2025-01-26 13:39:22,871 - tests.test_task_manager - ERROR - test_task_manager.py:179 - Error in run_paa test: assert 'current_node' in {'error': 'No human message found in the conversation history'}
+2025-01-26 13:39:22,884 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:39:22,887 - tests.test_task_manager - INFO - test_task_manager.py:184 - Testing error handling
+2025-01-26 13:39:22,889 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:39:22,889 - tests.test_task_manager - DEBUG - test_task_manager.py:190 - Planner error caught: No human message found in the conversation history
+2025-01-26 13:39:22,890 - task_manager - INFO - task_manager.py:131 - Executing Task Executor

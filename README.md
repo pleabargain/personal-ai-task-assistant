@@ -5,7 +5,12 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.37.0-green)
 ![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)
 
-The **Personal AI Task Assistant** is an interactive AI tool designed to assist with task automation, project management, and decision-making. This assistant leverages natural language processing to understand user inputs, execute tasks with integrated tools, and provide detailed updates and visualizations of progress.
+The **Personal AI Task Assistant** is an interactive AI tool designed to assist with task automation, project management, and decision-making. This version has been modified to run locally using Ollama instead of Anthropic's Claude. The assistant leverages natural language processing to understand user inputs, execute tasks with integrated tools, and provide detailed updates and visualizations of progress.
+
+**Note**: This is primarily a demonstration project showcasing the architecture and potential of AI task automation. It does not have actual integration with calendars, email systems, or personal goals - these are shown as examples of what could be implemented with proper API integrations.
+
+This is a fork of the original project, modified to use Ollama locally instead of Anthropic's Claude. Special thanks to the original author for creating this excellent foundation for exploring AI task automation patterns.
+
 
 ![Workflow Graph](assets/graph.png)
 
@@ -31,35 +36,34 @@ The project operates through a workflow consisting of the following key nodes:
 
 These nodes work in conjunction to manage and automate a wide variety of tasks, ensuring efficient and effective task management from start to finish.
 
-## Task Executor Functions
+## Current Capabilities
 
-The Task Executor Node relies on the following functions to perform specific operations. These functions are designed to interact with external services and APIs to carry out the necessary tasks:
+The Task Executor Node demonstrates the potential for task automation through its architecture. While the current implementation focuses on showcasing the workflow and decision-making process, the following capabilities could be integrated:
 
-### `call_calendar(query: str) -> str`
-- **Purpose**: Interfaces with a calendar service (e.g., Google Calendar) to perform actions such as checking availability, scheduling meetings, and managing events.
-- **Arguments**:
-  - `query` (str): A string describing the calendar operation. Example: `"action=check_availability, date=next Tuesday, time=2:00 PM, duration=1 hour"`
-- **Returns**: A confirmation message indicating the result of the calendar operation.
+### Example Integration Points
 
-### `get_contact(name: str) -> str`
-- **Purpose**: Retrieves contact information for a specified name.
-- **Arguments**:
-  - `name` (str): The name of the contact. Example: `"John Doe"`
-- **Returns**: A string with the contact's details, typically including an email address and phone number. Example: `"Contact info for John Doe: email@example.com, 123-456-7890"`
+1. **Calendar Management**
+   - Integration with calendar services (Google Calendar, Outlook, etc.)
+   - Meeting scheduling and availability checking
+   - Event management and reminders
 
-### `send_email(to: str, subject: str, body: str) -> str`
-- **Purpose**: Sends an email to a specified recipient with a subject and message body.
-- **Arguments**:
-  - `to` (str): The email address of the recipient. Example: `"recipient@example.com"`
-  - `subject` (str): The subject of the email. Example: `"Meeting Confirmation"`
-  - `body` (str): The body of the email. Example: `"Dear John, Please find attached the agenda for the upcoming meeting."`
-- **Returns**: A confirmation message indicating that the email has been sent. Example: `"Email sent to recipient@example.com with subject: Meeting Confirmation"`
+2. **Contact Management**
+   - Contact information storage and retrieval
+   - Integration with address books or CRM systems
 
-### `web_search(query: str) -> str`
-- **Purpose**: Performs a web search based on the provided query string.
-- **Arguments**:
-  - `query` (str): The search query. Example: `"latest trends in AI development"`
-- **Returns**: A summary of the search results. Example: `"Web search results for: latest trends in AI development"`
+3. **Communication**
+   - Email integration for sending notifications and updates
+   - Message drafting and scheduling
+
+4. **Information Retrieval**
+   - Web search integration
+   - Document search and summarization
+
+The current implementation uses Ollama for local execution, making it easy to experiment with and extend these capabilities. To add real functionality, you would need to:
+
+1. Implement the desired API integrations in the Task Executor
+2. Add appropriate authentication and credentials management
+3. Update the tools configuration to include the new capabilities
 
 ## Installation
 
@@ -91,12 +95,15 @@ The Task Executor Node relies on the following functions to perform specific ope
 
 ## Example
 
-Input: "Please schedule a meeting with Eric for next Tuesday at 2 PM, and draft an email to send the invitation."
+Input: "Analyze the project structure and create a task list for implementing calendar integration."
 
 Output:
-- The assistant schedules the meeting using the calendar tool.
-- An email draft is prepared and ready to be sent.
-- A project update with a checklist of completed tasks and pending actions.
+- The assistant breaks down the task into manageable steps
+- Provides a detailed plan for implementing calendar functionality
+- Shows a project update with a checklist of required tasks
+- Demonstrates the planning and replanning capabilities
+
+This example showcases the assistant's ability to analyze tasks and create structured plans, even though the actual calendar integration would need to be implemented separately.
 
 ## Contributing
 
@@ -107,9 +114,3 @@ Contributions are welcome! If you'd like to suggest improvements or add new feat
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-
-### Summary of Changes:
-- **Task Executor Functions**: Added detailed descriptions of the functions used by the Task Executor Node to the README.
-- **Updated Content**: The README now provides comprehensive information on how each function is intended to be used within the context of task execution, including argument formats and expected return values.
-
-This README should now fully document the functionality of the Personal AI Task Assistant, including the specifics of the task execution tools.

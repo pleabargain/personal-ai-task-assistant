@@ -1,0 +1,190 @@
+2025-01-26 13:58:33,086 - root - INFO - logging_config.py:56 - Logging system initialized
+2025-01-26 13:58:34,216 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 13:58:34,217 - httpcore.connection - DEBUG - _trace.py:47 - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-01-26 13:58:34,218 - httpcore.connection - DEBUG - _trace.py:47 - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021599B8C6E0>
+2025-01-26 13:58:34,219 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,219 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:58:34,220 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,220 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:58:34,220 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,228 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:58:34 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:58:34,229 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:58:34,230 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,230 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:58:34,230 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:58:34,231 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:58:34,231 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 13:58:34,315 - root - INFO - conftest.py:39 - Test logging initialized
+2025-01-26 13:58:34,329 - tests.test_app - INFO - test_app.py:67 - Testing page initialization
+2025-01-26 13:58:34,331 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 13:58:34,332 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,333 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:58:34,333 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,334 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:58:34,334 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,344 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:58:34 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:58:34,344 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:58:34,345 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,346 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:58:34,346 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:58:34,346 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:58:34,347 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 13:58:34,348 - tests.test_app - DEBUG - test_app.py:78 - Page initialization successful
+2025-01-26 13:58:34,358 - tests.test_app - INFO - test_app.py:85 - Testing model selection
+2025-01-26 13:58:34,360 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 13:58:34,361 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,362 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:58:34,362 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,362 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:58:34,362 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,371 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:58:34 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:58:34,372 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:58:34,373 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,373 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:58:34,374 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:58:34,374 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:58:34,374 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 13:58:34,377 - tests.test_app - ERROR - test_app.py:104 - Error in model selection test: assert 'test-model' in ['model1', 'model2', 'model3']
+ +  where 'test-model' = <streamlit.runtime.state.session_state_proxy.SessionStateProxy object at 0x00000215962942C0>.selected_model
+ +    where <streamlit.runtime.state.session_state_proxy.SessionStateProxy object at 0x00000215962942C0> = st.session_state
+2025-01-26 13:58:34,401 - tests.test_app - INFO - test_app.py:109 - Testing sample tasks
+2025-01-26 13:58:34,404 - tests.test_app - ERROR - test_app.py:118 - Error in sample tasks test: assert '' == 'Schedule a m...sday at 2 PM.'
+  
+  - Schedule a meeting with Eric for next Tuesday at 2 PM.
+2025-01-26 13:58:34,427 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:58:34,428 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:58:34,431 - tests.test_app - INFO - test_app.py:124 - Testing process request
+2025-01-26 13:58:34,434 - root - INFO - app.py:96 - Starting PAA execution
+2025-01-26 13:58:34,435 - task_manager - INFO - task_manager.py:302 - Running Personal AI Assistant with question: Test task
+2025-01-26 13:58:34,435 - task_manager - INFO - task_manager.py:321 - Current node: planner
+2025-01-26 13:58:34,436 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:58:34,436 - task_manager - ERROR - task_manager.py:369 - Error occurred in run_paa: Unsupported message type: <class 'dict'>
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 324, in run_paa
+    current_state = planner(current_state)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 83, in planner
+    prompt = ChatPromptTemplate.from_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\langchain_core\prompts\chat.py", line 1101, in from_messages
+    _convert_to_message(message, template_format) for message in messages
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\langchain_core\prompts\chat.py", line 1392, in _convert_to_message
+    raise NotImplementedError(f"Unsupported message type: {type(message)}")
+NotImplementedError: Unsupported message type: <class 'dict'>
+2025-01-26 13:58:34,439 - root - DEBUG - app.py:98 - Received status update: {'error': "Unsupported message type: <class 'dict'>"}
+2025-01-26 13:58:34,440 - root - ERROR - app.py:101 - PAA execution error: Unsupported message type: <class 'dict'>
+2025-01-26 13:58:34,441 - tests.test_app - ERROR - test_app.py:160 - Error in process request test: Expected 'progress' to have been called.
+2025-01-26 13:58:34,530 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:58:34,536 - tests.test_app - INFO - test_app.py:165 - Testing error handling
+2025-01-26 13:58:34,537 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 13:58:34,538 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,539 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:58:34,540 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,540 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:58:34,540 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,548 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:58:34 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:58:34,549 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:58:34,549 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,550 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:58:34,550 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:58:34,551 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:58:34,552 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 13:58:34,553 - tests.test_app - ERROR - test_app.py:183 - Error in error handling test: assert False
+ +  where False = <MagicMock name='error' id='2291797858816'>.called
+2025-01-26 13:58:34,567 - tests.test_app - INFO - test_app.py:188 - Testing session state management
+2025-01-26 13:58:34,569 - tests.test_app - DEBUG - test_app.py:200 - Session state management verified
+2025-01-26 13:58:34,578 - tests.test_app - INFO - test_app.py:207 - Testing UI components visibility
+2025-01-26 13:58:34,581 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 13:58:34,583 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,583 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:58:34,583 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,584 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:58:34,584 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:58:34,593 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:58:34 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:58:34,593 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:58:34,594 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:58:34,594 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:58:34,594 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:58:34,595 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:58:34,595 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 13:58:34,596 - tests.test_app - DEBUG - test_app.py:229 - UI components visibility verified
+2025-01-26 13:58:34,603 - tests.test_app - INFO - test_app.py:236 - Testing progress tracking
+2025-01-26 13:58:34,605 - tests.test_app - DEBUG - test_app.py:249 - Progress tracking verified
+2025-01-26 13:58:34,626 - tests.test_llm - INFO - test_llm.py:19 - Testing create_llm with successful response
+2025-01-26 13:58:34,628 - tests.test_llm - DEBUG - test_llm.py:29 - LLM response: {'content': 'This is a test response', 'role': 'assistant'}
+2025-01-26 13:58:34,632 - tests.test_llm - INFO - test_llm.py:36 - Testing create_llm error handling
+2025-01-26 13:58:34,633 - tests.test_llm - DEBUG - test_llm.py:45 - Expected error raised: Error communicating with Ollama: Test error
+2025-01-26 13:58:34,636 - tests.test_llm - INFO - test_llm.py:50 - Testing list_available_models with successful response
+2025-01-26 13:58:34,638 - tests.test_llm - DEBUG - test_llm.py:59 - Retrieved models: ['model1', 'model2', 'model3']
+2025-01-26 13:58:34,641 - tests.test_llm - INFO - test_llm.py:66 - Testing list_available_models error handling
+2025-01-26 13:58:34,643 - llm - ERROR - llm.py:54 - Failed to list Ollama models: Test error
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 51, in list_available_models
+    models = ollama.list()
+             ^^^^^^^^^^^^^
+  File "C:\Python312\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+Exception: Test error
+2025-01-26 13:58:34,673 - tests.test_llm - DEBUG - test_llm.py:72 - Expected error raised: Error listing Ollama models: Test error
+2025-01-26 13:58:34,685 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:58:34,687 - tests.test_llm - INFO - test_llm.py:78 - Testing LLM async compatibility
+2025-01-26 13:58:34,696 - tests.test_llm - DEBUG - test_llm.py:89 - Async LLM response: {'content': 'async test', 'role': 'assistant'}
+2025-01-26 13:58:34,698 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:58:34,702 - tests.test_llm - INFO - test_llm.py:96 - Testing LLM with streaming option
+2025-01-26 13:58:34,703 - tests.test_llm - DEBUG - test_llm.py:111 - Streaming LLM response: {'content': 'part1part2', 'role': 'assistant'}
+2025-01-26 13:58:34,707 - tests.test_task_manager - INFO - test_task_manager.py:56 - Testing create_agent
+2025-01-26 13:58:34,719 - tests.test_task_manager - DEBUG - test_task_manager.py:64 - Agent created successfully
+2025-01-26 13:58:34,724 - tests.test_task_manager - INFO - test_task_manager.py:71 - Testing extract_core_tasks
+2025-01-26 13:58:34,725 - task_manager - DEBUG - task_manager.py:35 - Extracting core tasks from plan: ['Step 1', 'Step 2', 'Step 3']
+2025-01-26 13:58:34,725 - task_manager - DEBUG - task_manager.py:37 - Extracted core tasks: ['ep 1', 'ep 2', 'ep 3']
+2025-01-26 13:58:34,726 - tests.test_task_manager - DEBUG - test_task_manager.py:77 - Extracted tasks: ['ep 1', 'ep 2', 'ep 3']
+2025-01-26 13:58:34,728 - tests.test_task_manager - INFO - test_task_manager.py:84 - Testing get_last_human_message
+2025-01-26 13:58:34,729 - tests.test_task_manager - DEBUG - test_task_manager.py:89 - Retrieved message: Test task
+2025-01-26 13:58:34,733 - tests.test_task_manager - INFO - test_task_manager.py:96 - Testing parse_llm_result
+2025-01-26 13:58:34,735 - tests.test_task_manager - DEBUG - test_task_manager.py:102 - Parsed result: {'goals': 'Complete test task', 'plan': ['Step 1: First action', 'Step 2: Second action', 'Step 3: Final action']}
+2025-01-26 13:58:34,738 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:58:34,740 - tests.test_task_manager - INFO - test_task_manager.py:110 - Testing planner
+2025-01-26 13:58:34,742 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:58:34,743 - tests.test_task_manager - ERROR - test_task_manager.py:123 - Error in planner test: Unsupported message type: <class 'dict'>
+2025-01-26 13:58:34,815 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:58:34,817 - tests.test_task_manager - INFO - test_task_manager.py:128 - Testing task_executor
+2025-01-26 13:58:34,819 - task_manager - INFO - task_manager.py:131 - Executing Task Executor
+2025-01-26 13:58:34,820 - tests.test_task_manager - ERROR - test_task_manager.py:148 - Error in task_executor test: Unsupported message type: <class 'dict'>
+2025-01-26 13:58:34,888 - tests.test_task_manager - INFO - test_task_manager.py:153 - Testing project_updater
+2025-01-26 13:58:34,889 - task_manager - INFO - task_manager.py:221 - Executing Project Updater
+2025-01-26 13:58:34,890 - tests.test_task_manager - DEBUG - test_task_manager.py:158 - Project updater result: {'messages': [SystemMessage(content='You are a helpful AI assistant.'), HumanMessage(content='Test task')], 'plan': ['Step 1', 'Step 2', 'Step 3'], 'goals': 'Test goal', 'past_actions': [], 'current_task': 'Step 1', 'response': 'Completed task: No action. Action taken: No details\n\nChecklist:\n- Step 1\n- Step 2\n- Step 3', 'context': {'model_id': 'test-model'}, 'current_node': 'project_updater'}
+2025-01-26 13:58:34,892 - tests.test_task_manager - INFO - test_task_manager.py:165 - Testing replanner
+2025-01-26 13:58:34,894 - task_manager - INFO - task_manager.py:247 - Executing Replanner
+2025-01-26 13:58:34,894 - tests.test_task_manager - ERROR - test_task_manager.py:184 - Error in replanner test: Unsupported message type: <class 'dict'>
+2025-01-26 13:58:34,960 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:58:34,961 - tests.test_task_manager - INFO - test_task_manager.py:190 - Testing run_paa
+2025-01-26 13:58:34,962 - task_manager - INFO - task_manager.py:302 - Running Personal AI Assistant with question: Test task
+2025-01-26 13:58:34,963 - task_manager - INFO - task_manager.py:321 - Current node: planner
+2025-01-26 13:58:34,964 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:58:34,964 - task_manager - ERROR - task_manager.py:369 - Error occurred in run_paa: Unsupported message type: <class 'dict'>
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 324, in run_paa
+    current_state = planner(current_state)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 83, in planner
+    prompt = ChatPromptTemplate.from_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\langchain_core\prompts\chat.py", line 1101, in from_messages
+    _convert_to_message(message, template_format) for message in messages
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\langchain_core\prompts\chat.py", line 1392, in _convert_to_message
+    raise NotImplementedError(f"Unsupported message type: {type(message)}")
+NotImplementedError: Unsupported message type: <class 'dict'>
+2025-01-26 13:58:34,965 - tests.test_task_manager - ERROR - test_task_manager.py:210 - Error in run_paa test: assert 'current_node' in {'error': "Unsupported message type: <class 'dict'>"}
+2025-01-26 13:58:34,977 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:58:34,980 - tests.test_task_manager - INFO - test_task_manager.py:215 - Testing error handling
+2025-01-26 13:58:34,982 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:58:34,982 - tests.test_task_manager - DEBUG - test_task_manager.py:221 - Planner error caught: No human message found in the conversation history
+2025-01-26 13:58:34,983 - task_manager - INFO - task_manager.py:131 - Executing Task Executor

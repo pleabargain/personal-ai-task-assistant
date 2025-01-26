@@ -1,0 +1,33 @@
+2025-01-26 13:17:25,107 - root - INFO - logging_config.py:47 - Logging system initialized
+2025-01-26 13:17:26,408 - root - INFO - app.py:16 - Fetching available Ollama models
+2025-01-26 13:17:26,409 - httpcore.connection - DEBUG - _trace.py:47 - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-01-26 13:17:26,410 - httpcore.connection - DEBUG - _trace.py:47 - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001BA404C2F90>
+2025-01-26 13:17:26,410 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:17:26,411 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:17:26,411 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:17:26,411 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:17:26,411 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:17:26,419 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:17:26 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:17:26,421 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:17:26,422 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:17:26,422 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:17:26,423 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:17:26,423 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:17:26,424 - root - ERROR - app.py:24 - Failed to connect to Ollama: Error listing Ollama models: 'name'
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 49, in list_available_models
+    return [model["name"] for model in models["models"]]
+            ~~~~~^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_types.py", line 33, in __getitem__
+    raise KeyError(key)
+KeyError: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\app.py", line 17, in <module>
+    available_models = list_available_models()
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 51, in list_available_models
+    raise RuntimeError(f"Error listing Ollama models: {str(e)}")
+RuntimeError: Error listing Ollama models: 'name'

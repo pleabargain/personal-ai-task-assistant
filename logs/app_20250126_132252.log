@@ -1,0 +1,272 @@
+2025-01-26 13:22:52,111 - root - INFO - logging_config.py:56 - Logging system initialized
+2025-01-26 13:22:53,445 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 13:22:53,447 - httpcore.connection - DEBUG - _trace.py:47 - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2025-01-26 13:22:53,449 - httpcore.connection - DEBUG - _trace.py:47 - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024A26808B60>
+2025-01-26 13:22:53,459 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:22:53,460 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:22:53,460 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:22:53,460 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:22:53,460 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:22:53,658 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:22:53 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:22:53,660 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:22:53,661 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:22:53,661 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:22:53,661 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:22:53,661 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:22:53,662 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 13:22:53,717 - root - INFO - conftest.py:39 - Test logging initialized
+2025-01-26 13:22:53,730 - tests.test_app - INFO - test_app.py:53 - Testing page initialization
+2025-01-26 13:22:53,733 - tests.test_app - ERROR - test_app.py:65 - Error in page initialization test: assert False
+ +  where False = <MagicMock name='set_page_config' id='2517518243776'>.called
+2025-01-26 13:22:53,757 - tests.test_app - INFO - test_app.py:70 - Testing model selection
+2025-01-26 13:22:53,759 - tests.test_app - ERROR - test_app.py:78 - Error in model selection test: assert False
+ +  where False = <MagicMock name='selectbox' id='2517517980288'>.called
+2025-01-26 13:22:53,778 - tests.test_app - INFO - test_app.py:83 - Testing sample tasks
+2025-01-26 13:22:53,779 - tests.test_app - ERROR - test_app.py:92 - Error in sample tasks test: st.session_state has no attribute "user_input". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2025-01-26 13:22:53,988 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:22:53,990 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:22:53,994 - tests.test_app - INFO - test_app.py:98 - Testing process request
+2025-01-26 13:22:53,996 - tests.test_app - ERROR - test_app.py:119 - Error in process request test: name 'process_request' is not defined
+2025-01-26 13:22:54,016 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:22:54,026 - tests.test_app - INFO - test_app.py:124 - Testing error handling
+2025-01-26 13:22:54,028 - tests.test_app - ERROR - test_app.py:138 - Error in error handling test: assert False
+ +  where False = <MagicMock name='error' id='2517516645008'>.called
+2025-01-26 13:22:54,047 - tests.test_app - INFO - test_app.py:143 - Testing session state management
+2025-01-26 13:22:54,048 - tests.test_app - DEBUG - test_app.py:155 - Session state management verified
+2025-01-26 13:22:54,057 - tests.test_app - INFO - test_app.py:162 - Testing UI components visibility
+2025-01-26 13:22:54,059 - tests.test_app - ERROR - test_app.py:172 - Error in UI components visibility test: assert False
+ +  where False = <MagicMock name='title' id='2517518568336'>.called
+2025-01-26 13:22:54,089 - tests.test_app - INFO - test_app.py:177 - Testing progress tracking
+2025-01-26 13:22:54,099 - tests.test_app - DEBUG - test_app.py:190 - Progress tracking verified
+2025-01-26 13:22:54,167 - tests.test_llm - INFO - test_llm.py:19 - Testing create_llm with successful response
+2025-01-26 13:22:54,173 - tests.test_llm - DEBUG - test_llm.py:29 - LLM response: {'content': 'This is a test response', 'role': 'assistant'}
+2025-01-26 13:22:54,178 - tests.test_llm - INFO - test_llm.py:36 - Testing create_llm error handling
+2025-01-26 13:22:54,181 - tests.test_llm - DEBUG - test_llm.py:45 - Expected error raised: Error communicating with Ollama: Test error
+2025-01-26 13:22:54,184 - tests.test_llm - INFO - test_llm.py:50 - Testing list_available_models with successful response
+2025-01-26 13:22:54,186 - tests.test_llm - ERROR - test_llm.py:61 - Error in list_available_models test: Error listing Ollama models: 'model'
+2025-01-26 13:22:54,210 - tests.test_llm - INFO - test_llm.py:66 - Testing list_available_models error handling
+2025-01-26 13:22:54,212 - tests.test_llm - DEBUG - test_llm.py:72 - Expected error raised: Error listing Ollama models: Test error
+2025-01-26 13:22:54,217 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:22:54,220 - tests.test_llm - INFO - test_llm.py:78 - Testing LLM async compatibility
+2025-01-26 13:22:54,222 - tests.test_llm - DEBUG - test_llm.py:89 - Async LLM response: {'content': 'async test', 'role': 'assistant'}
+2025-01-26 13:22:54,225 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:22:54,231 - tests.test_llm - INFO - test_llm.py:96 - Testing LLM with streaming option
+2025-01-26 13:22:54,233 - tests.test_llm - DEBUG - test_llm.py:111 - Streaming LLM response: {'content': 'part1part2', 'role': 'assistant'}
+2025-01-26 13:22:54,238 - tests.test_task_manager - INFO - test_task_manager.py:56 - Testing create_agent
+2025-01-26 13:22:54,243 - tests.test_task_manager - DEBUG - test_task_manager.py:64 - Agent created successfully
+2025-01-26 13:22:54,247 - tests.test_task_manager - INFO - test_task_manager.py:71 - Testing extract_core_tasks
+2025-01-26 13:22:54,248 - task_manager - DEBUG - task_manager.py:35 - Extracting core tasks from plan: ['Step 1', 'Step 2', 'Step 3']
+2025-01-26 13:22:54,249 - task_manager - DEBUG - task_manager.py:37 - Extracted core tasks: ['ep 1', 'ep 2', 'ep 3']
+2025-01-26 13:22:54,249 - tests.test_task_manager - DEBUG - test_task_manager.py:77 - Extracted tasks: ['ep 1', 'ep 2', 'ep 3']
+2025-01-26 13:22:54,252 - tests.test_task_manager - INFO - test_task_manager.py:84 - Testing get_last_human_message
+2025-01-26 13:22:54,254 - tests.test_task_manager - DEBUG - test_task_manager.py:89 - Retrieved message: Test task
+2025-01-26 13:22:54,267 - tests.test_task_manager - INFO - test_task_manager.py:96 - Testing parse_llm_result
+2025-01-26 13:22:54,280 - tests.test_task_manager - DEBUG - test_task_manager.py:102 - Parsed result: {'goals': 'Complete test task', 'plan': ['Step 1: First action', 'Step 2: Second action', 'Step 3: Final action']}
+2025-01-26 13:22:54,308 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:22:54,310 - tests.test_task_manager - INFO - test_task_manager.py:110 - Testing planner
+2025-01-26 13:22:54,312 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:22:54,314 - task_manager - ERROR - task_manager.py:125 - Error in planner: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 26, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 111, in planner
+    result = llm(prompt.format_messages())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 36, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:22:54,360 - tests.test_task_manager - ERROR - test_task_manager.py:120 - Error in planner test: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:22:54,496 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:22:54,499 - tests.test_task_manager - INFO - test_task_manager.py:125 - Testing task_executor
+2025-01-26 13:22:54,500 - task_manager - INFO - task_manager.py:129 - Executing Task Executor
+2025-01-26 13:22:54,502 - task_manager - ERROR - task_manager.py:197 - Error in task_executor: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 26, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 157, in task_executor
+    result = llm(messages)
+             ^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 36, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:22:54,505 - tests.test_task_manager - DEBUG - test_task_manager.py:134 - Task executor result: {'past_actions': [('Step 1', "Error occurred: Error communicating with Ollama: 1 validation error for Message\nrole\n  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.10/v/missing")], 'current_node': 'task_executor', 'response': "Error occurred while executing the task: Error communicating with Ollama: 1 validation error for Message\nrole\n  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.10/v/missing", 'next_task': None, 'plan': ['Step 1', 'Step 2', 'Step 3'], 'goals': 'Test goal', 'context': {'model_id': 'test-model'}}
+2025-01-26 13:22:54,508 - tests.test_task_manager - INFO - test_task_manager.py:141 - Testing project_updater
+2025-01-26 13:22:54,509 - task_manager - INFO - task_manager.py:214 - Executing Project Updater
+2025-01-26 13:22:54,510 - tests.test_task_manager - DEBUG - test_task_manager.py:146 - Project updater result: {'messages': [SystemMessage(content='You are a helpful AI assistant.'), HumanMessage(content='Test task')], 'plan': ['Step 1', 'Step 2', 'Step 3'], 'goals': 'Test goal', 'past_actions': [], 'current_task': 'Step 1', 'response': 'Completed task: No action. Action taken: No details\n\nChecklist:\n- Step 1\n- Step 2\n- Step 3', 'context': {'model_id': 'test-model'}, 'current_node': 'project_updater'}
+2025-01-26 13:22:54,514 - tests.test_task_manager - INFO - test_task_manager.py:153 - Testing replanner
+2025-01-26 13:22:54,515 - task_manager - INFO - task_manager.py:240 - Executing Replanner
+2025-01-26 13:22:54,516 - task_manager - ERROR - task_manager.py:291 - Error in replanner: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a re...ete.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 26, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a re...ete.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 269, in replanner
+    result = llm(messages)
+             ^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 36, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a re...ete.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:22:54,518 - tests.test_task_manager - ERROR - test_task_manager.py:163 - Error in replanner test: assert False
+ +  where False = isinstance({'context': {'model_id': 'test-model'}, 'current_node': 'task_executor', 'goals': 'Test goal', 'next_task': None, ...}, AgentFinish)
+2025-01-26 13:22:54,535 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:22:54,537 - tests.test_task_manager - INFO - test_task_manager.py:169 - Testing run_paa
+2025-01-26 13:22:54,540 - task_manager - INFO - task_manager.py:295 - Running Personal AI Assistant with question: Test task
+2025-01-26 13:22:54,541 - task_manager - INFO - task_manager.py:314 - Current node: planner
+2025-01-26 13:22:54,541 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:22:54,542 - task_manager - ERROR - task_manager.py:125 - Error in planner: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 26, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 111, in planner
+    result = llm(prompt.format_messages())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 36, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:22:54,544 - task_manager - ERROR - task_manager.py:362 - Error occurred in run_paa: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 26, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 317, in run_paa
+    current_state = planner(current_state)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 111, in planner
+    result = llm(prompt.format_messages())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 36, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:22:54,548 - tests.test_task_manager - ERROR - test_task_manager.py:179 - Error in run_paa test: assert 'current_node' in {'error': "Error communicating with Ollama: 1 validation error for Message\nrole\n  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.10/v/missing"}
+2025-01-26 13:22:54,569 - asyncio - DEBUG - proactor_events.py:634 - Using proactor: IocpProactor
+2025-01-26 13:22:54,572 - tests.test_task_manager - INFO - test_task_manager.py:184 - Testing error handling
+2025-01-26 13:22:54,574 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:22:54,575 - tests.test_task_manager - DEBUG - test_task_manager.py:190 - Planner error caught: No human message found in the conversation history
+2025-01-26 13:22:54,576 - task_manager - INFO - task_manager.py:129 - Executing Task Executor
+2025-01-26 13:22:54,578 - task_manager - ERROR - task_manager.py:197 - Error in task_executor: 'goals'
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 155, in task_executor
+    task=state["current_task"], goal=state["goals"]
+                                     ~~~~~^^^^^^^^^
+KeyError: 'goals'

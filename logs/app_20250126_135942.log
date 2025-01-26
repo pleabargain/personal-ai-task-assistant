@@ -1,0 +1,51 @@
+2025-01-26 13:59:42,144 - root - INFO - logging_config.py:56 - Logging system initialized
+2025-01-26 13:59:42,146 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 13:59:42,147 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:59:42,147 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:59:42,148 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:59:42,148 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:59:42,160 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:59:42,160 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:59:42 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:59:42,161 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:59:42,162 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:59:42,162 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:59:42,162 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:59:42,164 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:59:42,165 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 13:59:44,277 - root - INFO - logging_config.py:56 - Logging system initialized
+2025-01-26 13:59:44,280 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 13:59:44,281 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 13:59:44,282 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 13:59:44,282 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 13:59:44,282 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 13:59:44,294 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 13:59:44,295 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 09:59:44 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 13:59:44,295 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 13:59:44,296 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 13:59:44,297 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 13:59:44,297 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 13:59:44,298 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 13:59:44,300 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 13:59:44,311 - root - INFO - app.py:168 - Processing new request with model: deepseek-r1:latest
+2025-01-26 13:59:44,333 - root - DEBUG - app.py:169 - User input: Schedule a meeting with Eric for next Tuesday at 2 PM.
+2025-01-26 13:59:44,345 - asyncio - DEBUG - selector_events.py:64 - Using selector: SelectSelector
+2025-01-26 13:59:44,348 - root - INFO - app.py:96 - Starting PAA execution
+2025-01-26 13:59:44,350 - task_manager - INFO - task_manager.py:302 - Running Personal AI Assistant with question: Schedule a meeting with Eric for next Tuesday at 2 PM.
+2025-01-26 13:59:44,351 - task_manager - INFO - task_manager.py:321 - Current node: planner
+2025-01-26 13:59:44,353 - task_manager - INFO - task_manager.py:76 - Executing Planner
+2025-01-26 13:59:44,357 - task_manager - ERROR - task_manager.py:369 - Error occurred in run_paa: Unsupported message type: <class 'dict'>
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 324, in run_paa
+    current_state = planner(current_state)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 83, in planner
+    prompt = ChatPromptTemplate.from_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\langchain_core\prompts\chat.py", line 1101, in from_messages
+    _convert_to_message(message, template_format) for message in messages
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\langchain_core\prompts\chat.py", line 1392, in _convert_to_message
+    raise NotImplementedError(f"Unsupported message type: {type(message)}")
+NotImplementedError: Unsupported message type: <class 'dict'>
+2025-01-26 13:59:44,363 - root - DEBUG - app.py:98 - Received status update: {'error': "Unsupported message type: <class 'dict'>"}
+2025-01-26 13:59:44,363 - root - ERROR - app.py:101 - PAA execution error: Unsupported message type: <class 'dict'>
