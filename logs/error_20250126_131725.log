@@ -1,0 +1,18 @@
+2025-01-26 13:17:26,424 - root - ERROR - app.py:24 - Failed to connect to Ollama: Error listing Ollama models: 'name'
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 49, in list_available_models
+    return [model["name"] for model in models["models"]]
+            ~~~~~^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_types.py", line 33, in __getitem__
+    raise KeyError(key)
+KeyError: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\app.py", line 17, in <module>
+    available_models = list_available_models()
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 51, in list_available_models
+    raise RuntimeError(f"Error listing Ollama models: {str(e)}")
+RuntimeError: Error listing Ollama models: 'name'

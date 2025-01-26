@@ -1,0 +1,238 @@
+2025-01-26 13:29:04,978 - tests.test_app - ERROR - test_app.py:65 - Error in page initialization test: assert False
+ +  where False = <MagicMock name='set_page_config' id='1673202309152'>.called
+2025-01-26 13:29:04,998 - tests.test_app - ERROR - test_app.py:78 - Error in model selection test: assert False
+ +  where False = <MagicMock name='selectbox' id='1673201750992'>.called
+2025-01-26 13:29:05,019 - tests.test_app - ERROR - test_app.py:92 - Error in sample tasks test: st.session_state has no attribute "user_input". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
+2025-01-26 13:29:05,104 - tests.test_app - ERROR - test_app.py:119 - Error in process request test: name 'process_request' is not defined
+2025-01-26 13:29:05,127 - tests.test_app - ERROR - test_app.py:138 - Error in error handling test: assert False
+ +  where False = <MagicMock name='error' id='1673201287440'>.called
+2025-01-26 13:29:05,156 - tests.test_app - ERROR - test_app.py:172 - Error in UI components visibility test: assert False
+ +  where False = <MagicMock name='title' id='1673201127680'>.called
+2025-01-26 13:29:05,234 - llm - ERROR - llm.py:54 - Failed to list Ollama models: Test error
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 51, in list_available_models
+    models = ollama.list()
+             ^^^^^^^^^^^^^
+  File "C:\Python312\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+Exception: Test error
+2025-01-26 13:29:05,345 - task_manager - ERROR - task_manager.py:125 - Error in planner: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 29, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 111, in planner
+    result = llm(prompt.format_messages())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 39, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:29:05,351 - tests.test_task_manager - ERROR - test_task_manager.py:120 - Error in planner test: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:29:05,507 - task_manager - ERROR - task_manager.py:199 - Error in task_executor: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 29, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 158, in task_executor
+    result = llm(messages)
+             ^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 39, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:29:05,522 - task_manager - ERROR - task_manager.py:296 - Error in replanner: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a re...ete.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 29, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a re...ete.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 274, in replanner
+    result = llm(messages)
+             ^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 39, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a re...ete.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:29:05,525 - tests.test_task_manager - ERROR - test_task_manager.py:163 - Error in replanner test: assert False
+ +  where False = isinstance({'context': {'model_id': 'test-model'}, 'current_node': 'task_executor', 'current_task': 'Step 1', 'error': "Error communicating with Ollama: 1 validation error for Message\nrole\n  Field required [type=missing, input_value={'content': 'You are a re...ete.', 'type': 'system'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.10/v/missing", ...}, AgentFinish)
+2025-01-26 13:29:05,547 - task_manager - ERROR - task_manager.py:125 - Error in planner: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 29, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 111, in planner
+    result = llm(prompt.format_messages())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 39, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:29:05,551 - task_manager - ERROR - task_manager.py:367 - Error occurred in run_paa: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 29, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 322, in run_paa
+    current_state = planner(current_state)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 111, in planner
+    result = llm(prompt.format_messages())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 39, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 13:29:05,558 - tests.test_task_manager - ERROR - test_task_manager.py:179 - Error in run_paa test: assert 'current_node' in {'error': "Error communicating with Ollama: 1 validation error for Message\nrole\n  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.10/v/missing"}
+2025-01-26 13:29:05,592 - task_manager - ERROR - task_manager.py:199 - Error in task_executor: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 29, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 158, in task_executor
+    result = llm(messages)
+             ^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 39, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a he...sks.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing

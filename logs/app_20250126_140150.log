@@ -1,0 +1,97 @@
+2025-01-26 14:01:50,495 - root - INFO - logging_config.py:56 - Logging system initialized
+2025-01-26 14:01:50,497 - root - INFO - app.py:17 - Fetching available Ollama models
+2025-01-26 14:01:50,499 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.started request=<Request [b'GET']>
+2025-01-26 14:01:50,500 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_headers.complete
+2025-01-26 14:01:50,500 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.started request=<Request [b'GET']>
+2025-01-26 14:01:50,500 - httpcore.http11 - DEBUG - _trace.py:47 - send_request_body.complete
+2025-01-26 14:01:50,500 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.started request=<Request [b'GET']>
+2025-01-26 14:01:50,514 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Sun, 26 Jan 2025 10:01:50 GMT'), (b'Transfer-Encoding', b'chunked')])
+2025-01-26 14:01:50,514 - httpx - INFO - _client.py:1038 - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2025-01-26 14:01:50,516 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.started request=<Request [b'GET']>
+2025-01-26 14:01:50,516 - httpcore.http11 - DEBUG - _trace.py:47 - receive_response_body.complete
+2025-01-26 14:01:50,516 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.started
+2025-01-26 14:01:50,516 - httpcore.http11 - DEBUG - _trace.py:47 - response_closed.complete
+2025-01-26 14:01:50,517 - root - INFO - app.py:25 - Found 16 available models: ['deepseek-r1:latest', 'llama3.2:latest', 'llama3.3:70b-instruct-q4_K_S', 'llama3.2-vision:latest', 'marco-o1:latest', 'phi3:latest', 'research-phi3:latest', 'phi3:14b-instruct', 'qwen2.5:latest', 'NAME:latest', 'llava:13b', 'mxbai-embed-large:latest', 'nomic-embed-text:latest', 'x/llama3.2-vision:latest', 'mistral:latest', 'granite3-dense:latest']
+2025-01-26 14:01:50,524 - root - INFO - app.py:168 - Processing new request with model: llama3.2:latest
+2025-01-26 14:01:50,526 - root - DEBUG - app.py:169 - User input: Schedule a meeting with Eric for next Tuesday at 2 PM.
+2025-01-26 14:01:50,529 - asyncio - DEBUG - selector_events.py:64 - Using selector: SelectSelector
+2025-01-26 14:01:50,532 - root - INFO - app.py:96 - Starting PAA execution
+2025-01-26 14:01:50,533 - task_manager - INFO - task_manager.py:281 - Running Personal AI Assistant with question: Schedule a meeting with Eric for next Tuesday at 2 PM.
+2025-01-26 14:01:50,535 - task_manager - INFO - task_manager.py:300 - Current node: planner
+2025-01-26 14:01:50,537 - task_manager - INFO - task_manager.py:73 - Executing Planner
+2025-01-26 14:01:50,539 - task_manager - ERROR - task_manager.py:118 - Error in planner: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 29, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 104, in planner
+    result = llm(prompt.format_messages())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 39, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 14:01:50,545 - task_manager - ERROR - task_manager.py:348 - Error occurred in run_paa: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 29, in chat_with_ollama
+    response = ollama.chat(
+               ^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 338, in chat
+    messages=[message for message in _copy_messages(messages)],
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\ollama\_client.py", line 1131, in _copy_messages
+    yield Message.model_validate(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\AppData\Roaming\Python\Python312\site-packages\pydantic\main.py", line 627, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 303, in run_paa
+    current_state = planner(current_state)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\task_manager.py", line 104, in planner
+    result = llm(prompt.format_messages())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\denni\Documents\personal-ai-task-assistant\src\llm.py", line 39, in chat_with_ollama
+    raise RuntimeError(f"Error communicating with Ollama: {str(e)}")
+RuntimeError: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-26 14:01:50,553 - root - DEBUG - app.py:98 - Received status update: {'error': "Error communicating with Ollama: 1 validation error for Message\nrole\n  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.10/v/missing"}
+2025-01-26 14:01:50,553 - root - ERROR - app.py:101 - PAA execution error: Error communicating with Ollama: 1 validation error for Message
+role
+  Field required [type=missing, input_value={'content': 'You are a pl...eps.', 'type': 'system'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
